@@ -28,9 +28,7 @@ constructor(
 
 public async createRole() {
     if (this.roleForm.valid) {
-        await this.mainLoaderService.doWithLoadingScreen(async () => {
-     
-        });
+
 
         this.activeModal.close();
     }

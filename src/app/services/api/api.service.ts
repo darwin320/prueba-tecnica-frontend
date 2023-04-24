@@ -15,7 +15,9 @@ export interface ApiWithSearch<T> {
     search(
         userSearch?: string,
         currentSearchPage?: number,
-        searchLimit?: number
+        searchLimit?: number,
+        endDate?:string,
+        startDate?:string
     ): Observable<SearchResult<T>>;
 
     count(): Promise<number>;

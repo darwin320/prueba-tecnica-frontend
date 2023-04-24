@@ -16,23 +16,40 @@ export class CampanaApiService
     
 {
 
-    public files: File[] = [];
+    public search(
+        userSearch: string,
+        currentSearchPage: number,
+        searchLimit: number
+    ): Observable<SearchResult<Campana>> {
+        return from(this.getCampanas(userSearch, currentSearchPage, searchLimit));
+    }
 
-    public getListFiles(): File[] {
-        return this.files;
+    public async count() {
+        const result = await this.makeSimpleGetRequest<number>("/campanas/count");     
+        
+        return result.unwrap();
+    }
+
+    public async getCampanas(
+        userSearch: string,
+        currentPage: number,
+        searchAmount: number
+    ): Promise<SearchResult<Campana>> {
+        const result = await this.makeSearchPaginationRequest<Campana>(
+            "/campana/search",
+            userSearch,
+            currentPage,
+            searchAmount
+        );
+
+        return result.unwrap();
     }
 
         
-    search(userSearch?: string | undefined, currentSearchPage?: number | undefined, searchLimit?: number | undefined): Observable<SearchResult<Campana>> {
-        throw new Error("Method not implemented.");
-    }
-    count(): Promise<number> {
-        throw new Error("Method not implemented.");
-    }
+  
 
 
     public createCampana(camapanaInformation: {
-         id: number,
          nombre: string,
          apellido: string,
          telefono: string,

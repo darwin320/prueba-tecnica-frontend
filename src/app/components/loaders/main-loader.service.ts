@@ -42,11 +42,14 @@ export class MainLoaderService {
                 this.toastService.showError(result.val);
             }
         }
+        
+            this.removeLoadingScreen();
+        
 
-        this.removeLoadingScreen();
+        
     }
 
-    private createLoadingScreen() {
+    public createLoadingScreen() {
         if (this.loadingScreenNode === null) {
             this.loaderComponent = createComponent(LoaderComponent, {
                 environmentInjector: this.applicationRef.injector,
@@ -60,7 +63,7 @@ export class MainLoaderService {
         }
     }
 
-    private removeLoadingScreen() {
+    public removeLoadingScreen() {
         if (this.loadingScreenNode) {
             document.body.removeChild(this.loadingScreenNode);
             this.loadingScreenNode = null;

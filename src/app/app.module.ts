@@ -22,6 +22,8 @@ import {FileSelectModule } from '@progress/kendo-angular-upload';
 import { ModalComponent } from './modal/modal.component';
 import { MainLoaderService } from './components/loaders/main-loader.service';
 import { ApiService } from './services/api/api.service';
+import { ResultsComponent } from './results/results.component';
+import { SearchTableComponent } from './components/search/search-table/search-table.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { ApiService } from './services/api/api.service';
     AppComponent,
     HomeComponent,
     ModalComponent,
+    ResultsComponent,
+    SearchTableComponent
   ],
   imports: [
     BrowserModule,
@@ -44,11 +48,12 @@ import { ApiService } from './services/api/api.service';
     UploaderModule,
     FileSelectModule,
     NgbModule,
+   
     
   ],
   
   providers: [
-    ApiService],
+    ApiService,MainLoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

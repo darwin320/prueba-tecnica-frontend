@@ -1,0 +1,56 @@
+<head>
+    <link rel="stylesheet" Content-Type="text/css" href="/">
+  </head>
+<div class="px-5 py-3 mx-5 my-3 shadow border rounded">
+    <div class="input-group px-5 py-3">
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Búsqueda..."
+            [(ngModel)]="searchInput"
+        />
+        <button
+            class="btn btn-outline-secondary"
+            style="background-color: rgb(0, 0, 0); color: rgb(181, 181, 41);"
+            type="button"
+            (click)="search()"
+        >
+            Buscar
+        </button>
+    </div>
+
+    <div
+        class="h-100 d-flex justify-content-center align-items-center"
+        *ngIf="loading | async; else table"
+    >
+        <div class="text-center">
+            <div class="spinner-border text-blue-700" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Cargando...</p>
+        </div>
+    </div>
+    <ng-template #table>
+        <div class="flex-1-1-auto overflow-auto">
+            <ng-content></ng-content>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+            <ngb-pagination
+                [collectionSize]="collectionSize"
+                [maxSize]="5"
+                [(page)]="page"
+                (pageChange)="search()"
+            >
+            </ngb-pagination>
+
+            <style>
+                ::ng-deep .pagination .page-item.active .page-link {
+                  background-color: rgb(0, 0, 0);
+                  border-color: rgb(2, 2, 2);
+                  
+                }
+              </style>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,47 @@
+
+<img src="../../../assets/img/paisaje.jpg" style="position: absolute; top: 0; left: 0; z-index: -1; width: 100%; height: 100%;" />
+
+
+
+<div style="text-align: center;">
+    <h1 class="titleOne">Selecciona Tus Archivos</h1>
+    <img src="../../../assets/img/paisaje.jpg" style="position: absolute; top: 0; left: 0; z-index: -1; width: 100%; height: 100%;" />
+    <input type="file" multiple accept="text/plain, text/csv" (change)="onFileSelected($event)">
+    <table class="table table-striped table-bordered table-sm" style="margin: 0 auto; text-align: left; width: 60%; margin-top: 35px;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th style="padding-left: 20px;">Size (KB)</th>
+          <th>Acciones</th>
+          <th>Separador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let file of files">
+          <td>{{ file.name }}</td>
+          <td style="padding-left: 20px;">{{ file.size }}</td>
+          <td><button class="bi bi-trash-fill" (click)="onDeleteFile(file)" style="background-color: rgb(206, 79, 79); color: aliceblue;">Eliminar<i class="fas fa-trash"></i></button></td>
+          <td>
+            <input type="radio" id="separator-semicolon-{{ file.name }}" name="separator-{{ file.name }}" value=";"> <label for="separator-semicolon-{{ file.name }}">Punto y coma (;)</label><br>
+            <input type="radio" id="separator-comma-{{ file.name }}" name="separator-{{ file.name }}" value=","> <label for="separator-comma-{{ file.name }}">Coma (,)</label><br>
+            <input type="radio" id="separator-vertical-{{ file.name }}" name="separator-{{ file.name }}" value="|"> <label for="separator-vertical-{{ file.name }}">Barra vertical (|)</label><br>
+            <input type="radio" id="separator-other-{{ file.name }}" name="separator-{{ file.name }}" value="otro"> <label for="separator-other-{{ file.name }}">Otro:</label>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+    class="btn btn-sm btn-primary" 
+    style="margin-top: 10px;"
+    (click)="openEditUserModal()"
+>
+    <i class="bi bi-check2-circle"></i>
+    Cargar Archivos
+</button>
+</div>
+
+  
+
+
